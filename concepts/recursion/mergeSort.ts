@@ -11,15 +11,15 @@ const merge = (arr1: number[], arr2: number[]): number[] => {
     } else if (arr1[i] < arr2[j]) {
       mergedArr.push(arr1[i]);
       i += 1;
-    } else {
-      if (arr1[i]) {
-        mergedArr.push(arr1[i]);
-        i += 1;
-      }
-      if (arr2[j]) {
-        mergedArr.push(arr2[j]);
-        j += 1;
-      }
+    } else if (arr1[i] === arr2[j]) {
+      mergedArr.push(arr1[i], arr2[j]);
+      i += 1;
+      j += 1;
+    }
+    if (i === arr1.length) {
+      mergedArr.push(...arr2.slice(j));
+    } else if (j === arr2.length) {
+      mergedArr.push(...arr1.slice(i));
     }
   }
   return mergedArr;
